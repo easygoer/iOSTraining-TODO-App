@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Dmc-aM-y6i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lhf-ia-eT0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="aiN-qG-1qY">
+            <objects>
+                <navigationController id="lhf-ia-eT0" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VzB-at-62i">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Dmc-aM-y6i" kind="relationship" relationship="rootViewController" id="Uw1-GV-ZpB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lxh-N0-tOX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="647" y="-226"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="NBC-sV-Ps4">
             <objects>
@@ -13,13 +29,20 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tableView>
+                    <navigationItem key="navigationItem" id="Kvq-vR-shY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Kuf-G1-K3l">
+                            <connections>
+                                <action selector="pushAddButton:" destination="Dmc-aM-y6i" id="iFm-j5-low"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="4c4-Il-5jN" id="xAY-Un-PNh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3T0-FA-8JN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="480"/>
+            <point key="canvasLocation" x="1411" y="-226"/>
         </scene>
     </scenes>
 </document>

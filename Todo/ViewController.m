@@ -46,12 +46,17 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+//    return 1;
+   return self.todo.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSLog(@"numberOfRowsInSection %@", @(section));
-    return self.todo.count;
+//    return self.todo.count;
+    return 1;
+}
+- (IBAction)pushAddButton:(UIBarButtonItem *)sender {
+    NSLog(@"addButton");
 }
 
 - (UITableViewCell* )tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -60,12 +65,12 @@
 //    cell.textLabel.text = @"hello, world";
 //    cell.textLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
     todoTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell2"];
-    cell.todoLabel.text = self.todo[indexPath.row];
+    cell.todoLabel.text = self.todo[indexPath.section];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *todo = self.todo[indexPath.row];
+    NSString *todo = self.todo[indexPath.section];
     CGSize maxSize = CGSizeMake(CGRectGetWidth(tableView.bounds) - 8*2, CGFLOAT_MAX);
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:17.0]};
     CGRect rect =
@@ -80,10 +85,15 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 }
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+/*
+- (NSString *)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section {
+    return [NSString stringWithFormat:@"%ld 番目のセクション", section];
+}
+ 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 120)];
     view.backgroundColor = [UIColor brownColor];
     return view;
 }
+ */
 @end
