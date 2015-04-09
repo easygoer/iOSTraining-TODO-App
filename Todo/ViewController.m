@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "todoTableViewCell.h"
+#import "AddTodoViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -55,9 +56,6 @@
 //    return self.todo.count;
     return 1;
 }
-- (IBAction)pushAddButton:(UIBarButtonItem *)sender {
-    NSLog(@"addButton");
-}
 
 - (UITableViewCell* )tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"cellForRowAtIndexPath : %@", indexPath);
@@ -96,4 +94,15 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return view;
 }
  */
+
+- (IBAction)pushAddButton:(UIBarButtonItem *)sender {
+    NSLog(@"addButton");
+    AddTodoViewController *addTodoViewController =
+    [self.storyboard instantiateViewControllerWithIdentifier:@"AddTodoViewController"];
+    UINavigationController *navigationController =
+    [[UINavigationController alloc] initWithRootViewController:addTodoViewController];
+    
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
+
 @end

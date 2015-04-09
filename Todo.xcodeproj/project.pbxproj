@@ -16,6 +16,7 @@
 		2D423DBF1AB6E788008EF7E1 /* TodoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D423DBE1AB6E788008EF7E1 /* TodoTests.m */; };
 		BF893FED1AC4254700659042 /* todoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF893FEB1AC4254700659042 /* todoTableViewCell.m */; };
 		BF893FEE1AC4254700659042 /* todoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF893FEC1AC4254700659042 /* todoTableViewCell.xib */; };
+		BFAABD841AD692F900EAF4ED /* AddTodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAABD831AD692F900EAF4ED /* AddTodoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,8 @@
 		BF893FEA1AC4254700659042 /* todoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = todoTableViewCell.h; sourceTree = "<group>"; };
 		BF893FEB1AC4254700659042 /* todoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = todoTableViewCell.m; sourceTree = "<group>"; };
 		BF893FEC1AC4254700659042 /* todoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = todoTableViewCell.xib; sourceTree = "<group>"; };
+		BFAABD821AD692F900EAF4ED /* AddTodoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTodoViewController.h; sourceTree = "<group>"; };
+		BFAABD831AD692F900EAF4ED /* AddTodoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTodoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,8 @@
 				BF893FEA1AC4254700659042 /* todoTableViewCell.h */,
 				BF893FEB1AC4254700659042 /* todoTableViewCell.m */,
 				BF893FEC1AC4254700659042 /* todoTableViewCell.xib */,
+				BFAABD821AD692F900EAF4ED /* AddTodoViewController.h */,
+				BFAABD831AD692F900EAF4ED /* AddTodoViewController.m */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D423DAB1AB6E788008EF7E1 /* ViewController.m in Sources */,
+				BFAABD841AD692F900EAF4ED /* AddTodoViewController.m in Sources */,
 				2D423DA81AB6E788008EF7E1 /* AppDelegate.m in Sources */,
 				2D423DA51AB6E788008EF7E1 /* main.m in Sources */,
 				BF893FED1AC4254700659042 /* todoTableViewCell.m in Sources */,

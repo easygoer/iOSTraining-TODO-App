@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lhf-ia-eT0">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -43,6 +44,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3T0-FA-8JN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1411" y="-226"/>
+        </scene>
+        <!--Add Todo View Controller-->
+        <scene sceneID="4vs-QX-oI4">
+            <objects>
+                <viewController storyboardIdentifier="AddTodoViewController" id="esL-GI-ZNM" customClass="AddTodoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P0b-Gf-Gcv"/>
+                        <viewControllerLayoutGuide type="bottom" id="mFY-vh-JZ7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4ER-e9-M8R">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fes-Td-84e">
+                                <rect key="frame" x="16" y="0.0" width="568" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fes-Td-84e" firstAttribute="leading" secondItem="4ER-e9-M8R" secondAttribute="leadingMargin" id="1AL-BK-nn9"/>
+                            <constraint firstItem="mFY-vh-JZ7" firstAttribute="top" secondItem="fes-Td-84e" secondAttribute="bottom" id="jKC-25-eAP"/>
+                            <constraint firstItem="fes-Td-84e" firstAttribute="top" secondItem="4ER-e9-M8R" secondAttribute="topMargin" id="kLd-3L-MGD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fes-Td-84e" secondAttribute="trailing" id="t9f-jc-cxl"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FxB-Xe-O32" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1405" y="454"/>
         </scene>
     </scenes>
 </document>
