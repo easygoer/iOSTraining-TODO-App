@@ -10,9 +10,9 @@
 #import "todoTableViewCell.h"
 #import "AddTodoViewController.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate, AddTodoViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *todo;
+@property (strong, nonatomic) NSMutableArray *todo;
 
 @end
 
@@ -38,7 +38,7 @@
                   @"犬の散歩",
                   @"雨ニモマケズ 風ニモマケズ 雪ニモ夏ノ暑サニモマケヌ 丈夫ナカラダヲモチ 慾ハナク 決シテ瞋ラズ イツモシヅカニワラッテヰル 一日ニ玄米四合ト 味噌ト少シノ野菜ヲタベ アラユルコトヲ ジブンヲカンジョウニ入レズニ ヨクミキキシワカリ ソシテワスレズ",
                   @"ビールを飲む"
-                  ];
+                  ].mutableCopy;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,7 +73,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:17.0]};
     CGRect rect =
     [todo boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attribute context:nil];
-    NSLog(@"%@ -> %@", todo, NSStringFromCGRect(rect));
+//    NSLog(@"%@ -> %@", todo, NSStringFromCGRect(rect));
     CGFloat height = ceil(CGRectGetHeight(rect));
     // セルのマージンの上下８ピクセル
     // UITableViewCellとContentViewの間の１ピクセル
@@ -99,10 +99,20 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"addButton");
     AddTodoViewController *addTodoViewController =
     [self.storyboard instantiateViewControllerWithIdentifier:@"AddTodoViewController"];
+    addTodoViewController.delegate = self;
     UINavigationController *navigationController =
     [[UINavigationController alloc] initWithRootViewController:addTodoViewController];
     
     [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)addTodoViewControllerDoneButtonTapped:(NSString *)todo {
+    NSLog(@"here!! %@", todo);
+    [self dismissViewControllerAnimated:YES completion:nil];
+    if (todo) {
+        [self.todo addObject:todo];
+        [self.tableView reloadData];
+    }
 }
 
 @end

@@ -9,6 +9,8 @@
 #import "AddTodoViewController.h"
 
 @interface AddTodoViewController ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @end
 
@@ -28,6 +30,10 @@
     self.navigationItem.leftBarButtonItems = [[NSArray alloc]
                                               initWithObjects:cancelButton, testButton, nil];
     
+    // キーボード表示の通知を受け取る
+    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    // UIKeyboardWillShowNotification以外にもいろいろある
+    // アプリケーションがforegroundやbackgroundになるときなど
 
 }
 
@@ -38,16 +44,27 @@
 
 - (void)doneButtonTapped:(id)sender {
     NSLog(@"done tapped");
+    NSString *newTodo = self.textView.text;
+    [self.delegate addTodoViewControllerDoneButtonTapped:newTodo];
 }
 
 - (void)cancelButtonTapped:(id)sender {
     NSLog(@"cancel tapped");
+    [self.delegate addTodoViewControllerDoneButtonTapped:nil];
 }
 
 - (void)testButtonTapped:(id)sender {
     NSLog(@"test tapped");
+    self.textView.text=@"";
 }
 
+- (void)keyboardWillShow:(NSNotification*)notification {
+    NSLog(@"keyboard will show");
+    // キーボードの高さ分だけ制約を変える
+    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    self.constraint.constant = keyboardFrame.size.height;
+    
+}
 
 /*
 #pragma mark - Navigation
