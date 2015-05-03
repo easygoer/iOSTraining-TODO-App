@@ -47,14 +47,14 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 1;
-   return self.todo.count;
+    return 1;
+//   return self.todo.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSLog(@"numberOfRowsInSection %@", @(section));
-//    return self.todo.count;
-    return 1;
+    return self.todo.count;
+//    return 1;
 }
 
 - (UITableViewCell* )tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -112,6 +112,25 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (todo) {
         [self.todo addObject:todo];
         [self.tableView reloadData];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"index path %@", indexPath);
+    // 削除された場合
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // データ操作
+        [self.todo removeObjectAtIndex:indexPath.row];
+        // テーブルの更新
+        [tableView beginUpdates];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView endUpdates];
+        // アニメーションなし
+        // [tableView reloadData];
     }
 }
 
