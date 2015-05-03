@@ -16,6 +16,9 @@
 
 @end
 
+// 永続化用のキー
+static NSString *const kSavedTodoUserDefaultsKey = @"TODO";
+
 @implementation ViewController
 
 - (void)viewDidLoad {
@@ -27,18 +30,18 @@
 //    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     UINib *nib = [UINib nibWithNibName:@"todoTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cell2"];
+
+    self.title =@"title";
+    self.todo = [NSMutableArray array];
     
-    self.todo = @[@"牛乳を買ってくる",
-                  @"ビールを飲む",
-                  @"家賃の振り込み",
-                  @"洗剤を買い足す",
-                  @"Macのアップデート",
-                  @"ルンバの充電",
-                  @"結婚式の招待状に返信する",
-                  @"犬の散歩",
-                  @"雨ニモマケズ 風ニモマケズ 雪ニモ夏ノ暑サニモマケヌ 丈夫ナカラダヲモチ 慾ハナク 決シテ瞋ラズ イツモシヅカニワラッテヰル 一日ニ玄米四合ト 味噌ト少シノ野菜ヲタベ アラユルコトヲ ジブンヲカンジョウニ入レズニ ヨクミキキシワカリ ソシテワスレズ",
-                  @"ビールを飲む"
-                  ].mutableCopy;
+    // ファイルの書き込み先
+    NSLog(@"%@/Preferences", NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject);
+    
+    NSArray *savedTodo = [[NSUserDefaults standardUserDefaults] objectForKey:kSavedTodoUserDefaultsKey];
+    NSLog(@"%@", savedTodo);
+    [self.todo addObjectsFromArray:savedTodo];
+    NSLog(@"%@", self.todo);
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,23 +50,24 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    NSLog(@"numberOfSection");
     return 1;
 //   return self.todo.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"numberOfRowsInSection %@", @(section));
+    NSLog(@"numberOfRowsInSection %@/%ld", @(section), self.todo.count);
     return self.todo.count;
 //    return 1;
 }
 
 - (UITableViewCell* )tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"cellForRowAtIndexPath : %@", indexPath);
+    NSLog(@"cellForRowAtIndexPath : %@ %ld", indexPath, indexPath.row);
 //    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
 //    cell.textLabel.text = @"hello, world";
 //    cell.textLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
     todoTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell2"];
-    cell.todoLabel.text = self.todo[indexPath.section];
+    cell.todoLabel.text = self.todo[indexPath.row];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView
@@ -111,6 +115,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     [self dismissViewControllerAnimated:YES completion:nil];
     if (todo) {
         [self.todo addObject:todo];
+        [[NSUserDefaults standardUserDefaults] setObject:self.todo forKey:kSavedTodoUserDefaultsKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         [self.tableView reloadData];
     }
 }
@@ -125,6 +132,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // データ操作
         [self.todo removeObjectAtIndex:indexPath.row];
+        [[NSUserDefaults standardUserDefaults] setObject:self.todo forKey:kSavedTodoUserDefaultsKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         // テーブルの更新
         [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
